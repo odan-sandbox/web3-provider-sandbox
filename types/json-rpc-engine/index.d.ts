@@ -12,7 +12,7 @@ declare module "json-rpc-engine" {
 
   type JsonRpcError<T> = IEthereumRpcError<T>;
 
-  interface JsonRpcRequest<T> {
+  export interface JsonRpcRequest<T> {
     jsonrpc: JsonRpcVersion;
     method: string;
     id: JsonRpcId;
@@ -24,7 +24,7 @@ declare module "json-rpc-engine" {
     params?: T;
   }
 
-  interface JsonRpcResponse<T> {
+  export interface JsonRpcResponse<T> {
     result?: any;
     error?: JsonRpcError<any>;
     jsonrpc: JsonRpcVersion;
@@ -39,8 +39,8 @@ declare module "json-rpc-engine" {
     error: JsonRpcError<T>;
   }
 
-  type JsonRpcEngineEndCallback = (error?: JsonRpcError<any>) => void;
-  type JsonRpcEngineNextCallback = (
+  export type JsonRpcEngineEndCallback = (error?: JsonRpcError<any>) => void;
+  export type JsonRpcEngineNextCallback = (
     returnFlightCallback?: (done: () => void) => void
   ) => void;
 

@@ -7,6 +7,7 @@
     "@types/ethereum-protocol": "^1.0.0",
     "@types/jest": "^25.1.4",
     "@types/node": "^13.9.1",
+    "@types/secp256k1": "^3.5.3",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
     "eslint": "^6.8.0",
@@ -30,7 +31,12 @@
   "dependencies": {
     "eth-json-rpc-errors": "^2.0.2",
     "eth-json-rpc-middleware": "^4.4.1",
+    "ethereumjs-tx": "^2.1.2",
     "json-rpc-engine": "^5.1.8",
-    "web3": "^1.2.6"
+    "keccak": "^3.0.0",
+    "secp256k1": "^4.0.0",
+    "web3": "^1.2.6",
+    "web3-core": "^1.2.6",
+    "web3-core-helpers": "^1.2.6"
   }
 }
