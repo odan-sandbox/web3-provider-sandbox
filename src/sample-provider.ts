@@ -15,9 +15,8 @@ export class SampleProvider implements Provider {
   public constructor(baseProvider: Provider) {
     this.engine = new RpcEngine();
 
-    // this.engine.push(providerAsMiddleware(baseProvider));
-
     this.engine.push(createSignerMiddleware());
+    // this.engine.push(providerAsMiddleware(baseProvider));
   }
 
   public sendAsync(payload: JsonRpcPayload, callback: Callback): void {
@@ -25,16 +24,23 @@ export class SampleProvider implements Provider {
       {
         jsonrpc: "2.0",
         method: payload.method,
-        id: payload.id,
+        id: payload.id || this.generateId(),
         params: payload.params
       },
-      (error, res) => {
-        callback(error === null ? null : new Error(error.message), {
-          id: res.id as any,
+      (err, res) => {
+        const error = err === null ? null : new Error(err.message);
+        const id = typeof res.id === "string" ? parseInt(res.id) : res.id;
+
+        callback(error, {
+          id,
           jsonrpc: res.jsonrpc,
           result: res.result
         });
       }
     );
+  }
+
+  private generateId(): number {
+    return Math.floor(Math.random() * 1e9);
   }
 }

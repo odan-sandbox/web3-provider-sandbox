@@ -8,7 +8,7 @@ declare module "json-rpc-engine" {
 
   export type JsonRpcReservedMethod = string;
 
-  export type JsonRpcId = number | string | void;
+  export type JsonRpcId = number | string;
 
   type JsonRpcError<T> = IEthereumRpcError<T>;
 

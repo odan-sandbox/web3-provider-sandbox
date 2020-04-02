@@ -47,11 +47,10 @@ export class KeyPair {
 export class Signature {
   public readonly buffer: Buffer;
   constructor(data: { signature: Uint8Array; recId: number }) {
-    console.log(data);
     const signature = Buffer.from(data.signature.buffer);
 
     const recovery = Buffer.alloc(1);
-    recovery.writeUInt8(data.recId, 0);
+    recovery.writeUInt8((data.recId % 2) + 27, 0);
 
     this.buffer = Buffer.concat([signature, recovery]);
   }
